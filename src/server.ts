@@ -2,6 +2,7 @@ import { Server, ServerCredentials } from 'grpc';
 
 import { Greeter, GreeterService } from './services/Greeter';
 import { Health, HealthService, healthStatus, ServingStatus } from './services/Health';
+import { UserServiceService, Usersss } from './services/User';
 import { logger } from './utils';
 
 // https://github.com/grpc/grpc/issues/6976
@@ -18,6 +19,7 @@ const server: Server = new Server({
 });
 server.addService(GreeterService, new Greeter());
 server.addService(HealthService, new Health());
+server.addService(UserServiceService, new Usersss());
 server.bind(`0.0.0.0:${port}`, ServerCredentials.createInsecure());
 server.start();
 

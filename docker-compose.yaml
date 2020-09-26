@@ -1,0 +1,30 @@
+version: '3'
+services:
+
+  backend:
+    build: . 
+    # command: npm run start:dev
+    ports:
+      - 3001:3001
+      - 50051:50051
+    networks:
+      - envoymesh
+    volumes:
+      - .:/usr/src/app:rw
+      - /usr/src/app/node_modules
+
+  proxy:
+    image: envoyproxy/envoy-alpine:v1.14.1
+    environment:
+      NODE_ENV: development
+    ports:
+      - 8080:8080
+      - 8081:8081
+    networks:
+      - envoymesh
+    volumes:
+      - ./envoy.yaml:/etc/envoy/envoy.yaml
+
+networks:
+  envoymesh: {}
+
