@@ -10,12 +10,20 @@
     "build:proto": "node bin/proto",
     "prestart": "npm run lint && npm run build",
     "start": "node dist/server",
+    "start:dev": "ts-node-dev -r tsconfig-paths/register src/server",
     "client": "node dist/client",
     "health": "node dist/health"
   },
   "dependencies": {
+    "@types/levelup": "^4.3.0",
+    "@types/rocksdb": "^3.0.0",
     "google-protobuf": "^3.13.0",
-    "grpc": "^1.24.3"
+    "grpc": "^1.24.3",
+    "levelup": "^4.4.0",
+    "rocksdb": "^4.1.0",
+    "ts-node": "^9.0.0",
+    "ts-node-dev": "^1.0.0-pre.63",
+    "tsconfig-paths": "^3.9.0"
   },
   "devDependencies": {
     "@types/google-protobuf": "^3.7.3",

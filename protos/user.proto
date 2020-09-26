@@ -2,22 +2,22 @@ syntax = "proto3";
 
 package user;
 
-service UserService {
-  rpc GetUserById(UserById) returns (User) {}
-  rpc CreateUser(UserInput) returns (User) {}
+service User {
+  rpc GetUserById(UserById) returns (UserResult) {}
+  rpc CreateUser(UserInput) returns (UserResult) {}
 }
 
 message UserById {
-  int32 id = 1;
+  string id = 1;
 }
 
-message User {
-  int32 id = 1;
+message UserResult {
+  string id = 1;
   string name = 2;
 }
 
 message UserInput {
-  int32 id = 1;
+  string id = 1;
   string name = 2;
 }
 

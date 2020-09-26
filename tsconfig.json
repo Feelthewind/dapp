@@ -1,7 +1,9 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "paths": {},
+    "paths": {
+      "src/*": ["src/*"]
+    },
     "target": "ES2017",
     "outDir": "dist",
     "module": "commonjs",

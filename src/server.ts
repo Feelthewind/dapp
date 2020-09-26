@@ -1,8 +1,9 @@
 import { Server, ServerCredentials } from 'grpc';
+import { initDB } from './db';
 
 import { Greeter, GreeterService } from './services/Greeter';
 import { Health, HealthService, healthStatus, ServingStatus } from './services/Health';
-import { UserServiceService, Usersss } from './services/User';
+import { UserService, User } from './services/User';
 import { logger } from './utils';
 
 // https://github.com/grpc/grpc/issues/6976
@@ -12,6 +13,8 @@ if (process.env.NODE_APP_INSTANCE) {
   port += Number(process.env.NODE_APP_INSTANCE);
 }
 
+initDB();
+
 // Do not use @grpc/proto-loader
 const server: Server = new Server({
   'grpc.max_receive_message_length': -1,
@@ -19,7 +22,7 @@ const server: Server = new Server({
 });
 server.addService(GreeterService, new Greeter());
 server.addService(HealthService, new Health());
-server.addService(UserServiceService, new Usersss());
+server.addService(UserService, new User());
 server.bind(`0.0.0.0:${port}`, ServerCredentials.createInsecure());
 server.start();
 
